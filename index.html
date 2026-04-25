@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weitong Qian — Peking University</title>
+<meta name="description" content="Weitong Qian — undergraduate at Peking University, working on automating the AI stack at PKU-DAIR Lab." />
+<meta property="og:title" content="Weitong Qian — Peking University" />
+<meta property="og:description" content="Automating the AI stack — agents and LLMs across infrastructure, algorithms, research, and the physical world." />
+
+<!-- Sober, formal pairing — avoids the over-trendy "AI startup" look:
+     · Source Serif 4   – Adobe's academic serif, used in many PhD theses
+     · IBM Plex Sans    – Engineering-grade sans, distinctive without being fashionable
+     · IBM Plex Mono    – metadata
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Cleaner palette — less "warm paper", more focused */
+    --paper:      #fbfaf8;
+    --ink:        #0e0e0e;
+    --ink-soft:   #262626;
+    --muted:      #686868;
+    --muted-soft: #9a9a9a;
+    --rule:       #d8d4cc;
+    --rule-soft:  #ebe7df;
+
+    /* Punchier accent — vermilion, not the muted brick red of v1 */
+    --accent:     #d93826;
+    --accent-deep:#a82318;
+
+    --serif:  "Source Serif 4", "Source Serif Pro", "Iowan Old Style", Georgia, serif;
+    --sans:   "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    --mono:   "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --max-width: 1320px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--paper);
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 21px;
+    line-height: 1.6;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ─── Layout ─────────────────────────────────────── */
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 72px 56px 112px;
+    position: relative;
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 36px 22px 72px; }
+  }
+
+  /* ─── HERO ─────────────────────────────────────── */
+
+  header.hero { margin-bottom: 72px; }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 28px;
+  }
+  .avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--rule-soft);
+    flex-shrink: 0;
+  }
+  .name-block { flex: 1; min-width: 0; }
+  .name-block h1 {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 60;
+    font-weight: 600;
+    font-size: 76px;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .name-block .zh {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 24;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 28px;
+    margin-left: 14px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .name-block .role {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin: 6px 0 0;
+  }
+  .name-block .role a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .name-block .role a:hover { color: var(--accent); }
+  .name-block .role .sep { color: var(--muted-soft); margin: 0 8px; }
+
+  @media (max-width: 540px) {
+    .name-block h1 { font-size: 42px; }
+    .name-block .zh { display: block; margin-left: 0; margin-top: 4px; font-size: 18px; }
+    .avatar { width: 80px; height: 80px; }
+    .name-row { gap: 22px; align-items: flex-start; }
+  }
+
+  /* contact bar — bigger, more confident */
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin: 0 0 52px;
+    font-family: var(--mono);
+    font-size: 15.5px;
+    font-weight: 500;
+    padding: 14px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .contact a {
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    transition: color .2s ease;
+  }
+  .contact a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 100%; bottom: -3px;
+    height: 2px;
+    background: var(--accent);
+    transition: right .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .contact a:hover { color: var(--accent); }
+  .contact a:hover::after { right: 0; }
+
+  /* hero prose — bigger, more confident */
+  .hero-text {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 14;
+    font-size: 25px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .hero-text p { margin: 0 0 22px; }
+  .hero-text p:last-of-type { margin-bottom: 0; }
+  .hero-text strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .hero-text a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color .2s ease, background .2s ease;
+  }
+  .hero-text a:hover {
+    color: var(--accent);
+    background: rgba(217, 56, 38, 0.08);
+  }
+
+  /* Big four-layer stack with bold visual hierarchy */
+  .stack {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 0;
+    border-top: 2px solid var(--ink);
+  }
+  .stack li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .stack .num {
+    font-family: var(--mono);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .stack .layer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stack .layer-name {
+    font-family: var(--sans);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .stack .layer-desc {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 14;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 540px) {
+    .stack li { grid-template-columns: 38px 1fr; gap: 16px; padding: 16px 0; }
+    .stack .num { font-size: 18px; padding-top: 4px; }
+    .stack .layer-name { font-size: 15.5px; }
+    .stack .layer-desc { font-size: 17px; }
+  }
+
+  /* ─── Section pattern ───────────────────────────── */
+
+  section { margin-top: 84px; }
+
+  h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--ink);
+    margin: 0 0 28px;
+    padding-bottom: 12px;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  h2::before {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 56px; height: 4px;
+    background: var(--accent);
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 540px) {
+    h2 { font-size: 26px; }
+  }
+
+  /* ─── News (timeline) ───────────────────────────── */
+
+  .news ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+  .news ol::before {
+    content: "";
+    position: absolute;
+    left: 113px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: var(--rule);
+  }
+  .news li {
+    display: grid;
+    grid-template-columns: 100px 28px 1fr;
+    gap: 0;
+    padding: 12px 0;
+    align-items: baseline;
+  }
+  .news .date {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    padding-top: 5px;
+  }
+  .news .dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    margin: 9px auto 0;
+    grid-column: 2;
+    position: relative; z-index: 1;
+    box-shadow: 0 0 0 4px var(--paper);
+  }
+  .news li:first-child .dot {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .news .item {
+    font-family: var(--serif);
+    font-size: 21.5px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  .news .item strong { color: var(--ink); font-weight: 600; }
+  .news .item a {
+    color: var(--ink); text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+  }
+  .news .item a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .news ol::before { left: 73px; }
+    .news li { grid-template-columns: 70px 18px 1fr; }
+    .news .date { font-size: 12px; }
+    .news .item { font-size: 16.5px; }
+  }
+
+  /* ─── Publications ─────────────────────────────── */
+
+  .pub {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pub:last-child { border-bottom: none; }
+
+  .pub-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--accent);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  .pub-title {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 60;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .pub-title a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color .2s ease, background .2s ease;
+  }
+  .pub-title a:hover {
+    color: var(--accent);
+    background: rgba(217,56,38,0.08);
+  }
+  .pub-authors {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink-soft);
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .pub-authors .me {
+    font-weight: 700;
+    color: var(--ink);
+    background: rgba(217,56,38,0.12);
+    padding: 1px 4px;
+    border-radius: 1px;
+  }
+  .pub-venue {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+  .pub-venue a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color .2s ease;
+  }
+  .pub-venue a:hover { color: var(--accent); }
+  @media (max-width: 540px) {
+    .pub-title { font-size: 22px; }
+  }
+
+  /* ─── Projects ─────────────────────────────────── */
+
+  .project-group { margin-top: 36px; }
+  .project-group:first-child { margin-top: 4px; }
+
+  .group-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0 0 18px;
+    text-transform: uppercase;
+  }
+  .group-label .num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .group-label .line {
+    flex: 1;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .project {
+    padding: 16px 0 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .project:last-child { border-bottom: none; }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-bottom: 10px;
+  }
+  .project-name {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 60;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .project-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--rule-soft);
+    border-radius: 2px;
+  }
+  .project-meta.flag-award {
+    color: var(--paper);
+    background: var(--accent);
+  }
+  .project-meta.flag-progress {
+    color: var(--ink);
+    background: transparent;
+    border: 1px dashed var(--muted);
+  }
+
+  .project-desc {
+    font-family: var(--serif);
+    font-size: 21px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0 0 12px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 18px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  .project-links a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color .2s ease, background .2s ease;
+  }
+  .project-links a:hover {
+    color: var(--accent);
+    background: rgba(217,56,38,0.08);
+  }
+  @media (max-width: 540px) {
+    .project-name { font-size: 21px; }
+  }
+
+  /* ─── Experience ───────────────────────────────── */
+
+  .exp {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .exp:last-child { border-bottom: none; }
+  .exp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .exp-title {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 24;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .exp-title .role {
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .exp-desc {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ─── Awards (Competitions & Scholarships) ─────── */
+
+  .awards-subhead {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .awards-subhead::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .awards-subhead--second { margin-top: 36px; }
+
+  .awards-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .awards-list li {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    font-family: var(--serif);
+    font-size: 20.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-bottom: 1px dotted var(--rule);
+  }
+  .awards-list li:last-child { border-bottom: none; }
+  .awards-list .year {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    padding-top: 3px;
+    letter-spacing: 0.02em;
+  }
+  .awards-list .for {
+    color: var(--muted);
+    font-size: 15px;
+    font-style: italic;
+  }
+  @media (max-width: 540px) {
+    .awards-list li { grid-template-columns: 56px 1fr; gap: 14px; font-size: 16px; }
+  }
+
+  /* ─── Meta-stars tag (inline GitHub stars, live updated via JS) ─────── */
+  /* Visually identical to flag-award (red filled), but content is text
+     that JS updates from GitHub API. Falls back to static count. */
+
+  .meta-stars {
+    color: var(--paper);
+    background: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity .2s ease;
+  }
+  .meta-stars:hover { opacity: 0.85; }
+  .meta-stars .star-glyph {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    line-height: 1;
+    transform: translateY(-0.5px);
+  }
+  .meta-stars .star-count {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  /* ─── Service ──────────────────────────────────── */
+
+  .service-list { list-style: none; padding: 0; margin: 0; }
+  .service-list li {
+    padding: 14px 0;
+    font-family: var(--serif);
+    font-size: 21px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list .role-line { color: var(--ink); }
+  .service-list .role-line strong { font-weight: 700; color: var(--ink); }
+  .service-list .date {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Friends ──────────────────────────────────── */
+
+  .friends-list { list-style: none; padding: 0; margin: 0; }
+  .friends-list li {
+    padding: 10px 0;
+    font-family: var(--serif);
+    font-size: 20.5px;
+    color: var(--ink-soft);
+  }
+  .friends-list a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    font-weight: 500;
+  }
+  .friends-list a:hover { color: var(--accent); }
+  .friends-list .note { color: var(--muted); font-style: italic; font-size: 15.5px; }
+
+  /* ─── Footer ───────────────────────────────────── */
+
+  footer {
+    margin-top: 96px;
+    padding-top: 28px;
+    border-top: 2px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Entrance animation ───────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .wrap > * { animation: rise .65s cubic-bezier(.2,.8,.2,1) backwards; }
+    header.hero     { animation-delay: .04s; }
+    section:nth-of-type(1) { animation-delay: .14s; }
+    section:nth-of-type(2) { animation-delay: .19s; }
+    section:nth-of-type(3) { animation-delay: .23s; }
+    section:nth-of-type(4) { animation-delay: .27s; }
+    section:nth-of-type(5) { animation-delay: .30s; }
+    section:nth-of-type(6) { animation-delay: .33s; }
+    section:nth-of-type(7) { animation-delay: .36s; }
+    footer          { animation-delay: .40s; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  ::selection { background: rgba(217,56,38,0.22); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ════════ HERO ════════ -->
+  <header class="hero">
+    <div class="name-row">
+      <img class="avatar" src="assets/avatar.jpg" alt="Weitong Qian" onerror="this.style.background='#ebe7df';this.removeAttribute('src');" />
+      <div class="name-block">
+        <h1>Weitong Qian<span class="zh">钱韦潼</span></h1>
+        <p class="role">Undergraduate <span class="sep">·</span> Peking University <span class="sep">·</span> <a href="https://github.com/PKU-DAIR" target="_blank" rel="noopener">DAIR Lab</a></p>
+      </div>
+    </div>
+
+    <div class="contact">
+      <a href="mailto:weitong.qian@stu.pku.edu.cn">weitong.qian@stu.pku.edu.cn</a>
+      <a href="https://github.com/skyllwt" target="_blank" rel="noopener">github</a>
+      <a href="https://scholar.google.com/citations?hl=en&user=MQIxVcwAAAAJ" target="_blank" rel="noopener">google scholar</a>
+    </div>
+
+    <div class="hero-text">
+      <p>
+        I am a junior undergraduate at <strong>Peking University, College of Engineering (COE)</strong>,
+        advised by <strong>Prof. Bin Cui</strong> and <strong>Asst. Prof. Xupeng Miao</strong>
+        at the <a href="https://github.com/PKU-DAIR" target="_blank" rel="noopener">PKU-DAIR Lab</a>.
+      </p>
+      <p>
+        I work on <strong>using AI to build AI</strong>: developing systems in which
+        AI accelerates, automates, and extends the very process by which AI is
+        created and deployed.
+      </p>
+      <p>
+        I am interested in turning AI inward on its own stack — the infrastructure
+        it runs on, the algorithms that train it, the research process that
+        produces it, and the physical embodiments through which it acts.
+      </p>
+
+      <p>My research spans four layers of this stack:</p>
+
+      <ol class="stack">
+        <li>
+          <span class="num">01</span>
+          <div class="layer-content">
+            <span class="layer-name">AI for AI Infrastructure</span>
+            <span class="layer-desc">Agents that write and optimize the code AI runs on.</span>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div class="layer-content">
+            <span class="layer-name">AI for AI Algorithms</span>
+            <span class="layer-desc">LLM-guided search for ML pipelines and hyperparameters.</span>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div class="layer-content">
+            <span class="layer-name">AI for AI Research</span>
+            <span class="layer-desc">Agent systems that compress the literature-to-publication loop.</span>
+          </div>
+        </li>
+        <li>
+          <span class="num">04</span>
+          <div class="layer-content">
+            <span class="layer-name">AI for the Physical World</span>
+            <span class="layer-desc">Embodied agents and world models that extend AI's reach beyond the screen.</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+
+  <!-- ════════ LEADERSHIP & SERVICE ════════ -->
+  <section>
+    <h2><span>Leadership &amp; Service</span><span class="num">/ 01</span></h2>
+    <ul class="service-list">
+      <li>
+        <span class="role-line"><strong>President</strong>, PKU Jiangsu Students' Association <span style="color:var(--muted)">(Suyun, 苏韵)</span></span>
+        <span class="date">2025 – Present</span>
+      </li>
+      <li>
+        <span class="role-line"><strong>Class President</strong>, PKU Engineering Science &amp; Aerospace Engineering, Class of 2027</span>
+        <span class="date">2024 – Present</span>
+      </li>
+    </ul>
+  </section>
+
+
+  <!-- ════════ PUBLICATIONS ════════ -->
+  <section>
+    <h2><span>Publications</span><span class="num">/ 02</span></h2>
+    <div class="pub">
+      <span class="pub-tag">Under Review</span>
+      <p class="pub-title"><a href="https://arxiv.org/abs/2601.12355" target="_blank" rel="noopener">LB-MCTS: Synergizing Large Language Models and Bayesian Optimization for Efficient CASH</a></p>
+      <p class="pub-authors">
+        Beicheng Xu, <span class="me">Weitong Qian</span>, Lingching Tung, Yupeng Lu, Bin Cui
+      </p>
+      <p class="pub-venue">Submitted to ICML 2026 · <a href="https://arxiv.org/abs/2601.12355" target="_blank" rel="noopener">arXiv:2601.12355</a></p>
+    </div>
+  </section>
+
+
+  <!-- ════════ PROJECTS ════════ -->
+  <section>
+    <h2><span>Projects</span><span class="num">/ 03</span></h2>
+
+    <div class="project-group">
+      <p class="group-label"><span class="num">01</span><span>AI for AI Infrastructure</span><span class="line"></span></p>
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">GPU Kernel Optimization Agent</span>
+          <span class="project-meta flag-progress">In progress</span>
+        </div>
+        <p class="project-desc">
+          An open-source agent system that autonomously writes, profiles, and
+          optimizes CUDA kernels — pushing AI further down its own software stack.
+        </p>
+      </div>
+    </div>
+
+    <div class="project-group">
+      <p class="group-label"><span class="num">02</span><span>AI for AI Algorithms</span><span class="line"></span></p>
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">LB-MCTS</span>
+          <span class="project-meta">ICML 2026 · under review</span>
+        </div>
+        <p class="project-desc">
+          LLM-guided Monte Carlo Tree Search for the Combined Algorithm Selection
+          and Hyperparameter optimization (CASH) problem. We use the LLM as a
+          structural prior over the pipeline space, making Bayesian optimization
+          dramatically more sample-efficient.
+        </p>
+        <div class="project-links">
+          <a href="https://arxiv.org/abs/2601.12355" target="_blank" rel="noopener">arxiv →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-group">
+      <p class="group-label"><span class="num">03</span><span>AI for AI Research</span><span class="line"></span></p>
+
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">OmegaWiki</span>
+          <span class="project-meta">Open source</span>
+          <a class="project-meta meta-stars" href="https://github.com/skyllwt/OmegaWiki/stargazers" target="_blank" rel="noopener" data-stars-repo="skyllwt/OmegaWiki" data-stars-fallback="382">
+            <span class="star-glyph">★</span><span class="star-count">382</span>
+          </a>
+        </div>
+        <p class="project-desc">
+          Karpathy's LLM-Wiki vision, fully realized — a wiki-centric, full-lifecycle
+          AI research platform powered by Claude Code. Twenty skills covering the
+          loop from paper ingestion → idea generation → experiment design →
+          paper writing → reviewer rebuttal. Knowledge compounds; failed
+          experiments become anti-repetition memory.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/skyllwt/OmegaWiki" target="_blank" rel="noopener">github →</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">FrontierPilot</span>
+          <span class="project-meta flag-award">2nd Prize · Lobster Hackathon</span>
+        </div>
+        <p class="project-desc">
+          An AI research-onboarding tool, built on the OpenClaw skill platform.
+          Given a topic, it constructs a self-contained, growing knowledge base —
+          field overview, foundational and frontier papers, peer reviews,
+          knowledge graph — that a newcomer can converse with directly.
+        </p>
+        <div class="project-links">
+          <a href="https://github.com/skyllwt/FrontierPilot" target="_blank" rel="noopener">github →</a>
+          <a href="https://www.bilibili.com/video/BV1DSwizkE5Z/" target="_blank" rel="noopener">3-min demo →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-group">
+      <p class="group-label"><span class="num">04</span><span>AI for the Physical World</span><span class="line"></span></p>
+
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">Embodied RL @ Galbot</span>
+          <span class="project-meta">Feb – Jun 2025</span>
+        </div>
+        <p class="project-desc">
+          Vision-based, RL-driven non-prehensile grasping; RL controllers for
+          stable and adaptive locomotion on quadruped and biped robots over
+          varied terrain. Advised by Prof. He Wang.
+        </p>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">AI Robot Scientist Experiment System</span>
+          <span class="project-meta flag-award">3rd Prize · Beijing Challenge Cup</span>
+        </div>
+        <p class="project-desc">
+          A system in which embodied AI agents autonomously plan and conduct
+          scientific experiments — research automation extended into the
+          physical world.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════ EXPERIENCE ════════ -->
+  <section>
+    <h2><span>Experience</span><span class="num">/ 04</span></h2>
+
+    <div class="exp">
+      <div class="exp-head">
+        <span class="exp-title">PKU-DAIR Lab, Peking University <span class="role">— Undergraduate Researcher</span></span>
+        <span class="exp-date">Jul 2025 – Present</span>
+      </div>
+      <p class="exp-desc">
+        Working on automating the AI stack across algorithms, research, and
+        infrastructure. Advised by Prof. Bin Cui and Asst. Prof. Xupeng Miao.
+      </p>
+    </div>
+
+    <div class="exp">
+      <div class="exp-head">
+        <span class="exp-title">Galbot (北京银河通用机器人) <span class="role">— Algorithm Intern</span></span>
+        <span class="exp-date">Feb 2025 – Jun 2025</span>
+      </div>
+      <p class="exp-desc">
+        Research on vision-based, RL-driven non-prehensile grasping; RL
+        controllers for legged robots. Advised by Prof. He Wang.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ════════ AWARDS ════════ -->
+  <section>
+    <h2><span>Awards</span><span class="num">/ 05</span></h2>
+
+    <p class="awards-subhead">Competitions &amp; Recognition</p>
+    <ul class="awards-list">
+      <li>
+        <span class="year">2026</span>
+        <span>2nd Prize, Academic Track, Zhongguancun Lobster Hackathon <span class="for">— for FrontierPilot</span></span>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <span>3rd Prize, Beijing "Challenge Cup" Undergraduate Academic Competition <span class="for">— for AI Robot Scientist System</span></span>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <span>3rd Prize, PKU Challenge Cup</span>
+      </li>
+      <li>
+        <span class="year">2024</span>
+        <span>First Prize, National Undergraduate Mathematical Contest in Modeling</span>
+      </li>
+    </ul>
+
+    <p class="awards-subhead awards-subhead--second">Scholarships &amp; Honors</p>
+    <ul class="awards-list">
+      <li>
+        <span class="year">2025</span>
+        <span>PKU POSCO Scholarship</span>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <span>PKU Xia Shouyu &amp; Huang Yucen Undergraduate Internship Scholarship</span>
+      </li>
+      <li>
+        <span class="year">2024</span>
+        <span>PKU BYD Scholarship</span>
+      </li>
+      <li>
+        <span class="year">2024 / 25</span>
+        <span>PKU Merit Student</span>
+      </li>
+    </ul>
+  </section>
+
+
+  <!-- ════════ NEWS ════════ -->
+  <section class="news">
+    <h2><span>News</span><span class="num">/ 06</span></h2>
+    <ol>
+      <li>
+        <span class="date">Apr 2026</span>
+        <span class="dot"></span>
+        <span class="item">Released <a href="https://github.com/skyllwt/OmegaWiki" target="_blank" rel="noopener">OmegaWiki</a> — a wiki-centric AI research lifecycle platform powered by Claude Code.</span>
+      </li>
+      <li>
+        <span class="date">Mar 2026</span>
+        <span class="dot"></span>
+        <span class="item"><strong>FrontierPilot</strong> wins 2nd Prize at the Zhongguancun OpenClaw Hackathon (Academic Track).</span>
+      </li>
+      <li>
+        <span class="date">Jan 2026</span>
+        <span class="dot"></span>
+        <span class="item"><a href="https://arxiv.org/abs/2601.12355" target="_blank" rel="noopener"><strong>LB-MCTS</strong></a> submitted to ICML 2026 (under review).</span>
+      </li>
+      <li>
+        <span class="date">Jul 2025</span>
+        <span class="dot"></span>
+        <span class="item">Joined <a href="https://github.com/PKU-DAIR" target="_blank" rel="noopener">PKU-DAIR Lab</a>.</span>
+      </li>
+    </ol>
+  </section>
+
+
+  <!-- ════════ FRIENDS ════════ -->
+  <section>
+    <h2><span>Friends</span><span class="num">/ 07</span></h2>
+    <ul class="friends-list">
+      <li><a href="http://blog.lowkeyyyy.cn/" target="_blank" rel="noopener">Lowkeyyyy @ NJU</a> <span class="note">— thoughts on software engineering, ML, and creative coding.</span></li>
+      <li><a href="https://csxq0605.github.io/" target="_blank" rel="noopener">Wangjie Su @ PKU</a> <span class="note">— interested in applying neural networks.</span></li>
+      <li><a href="https://skywalkjian-site.vercel.app/" target="_blank" rel="noopener">skywalkjian @ PKU</a> <span class="note">— majoring in computer science.</span></li>
+    </ul>
+  </section>
+
+
+  <footer>
+    <span>© 2026 · Weitong Qian</span>
+    <span>Beijing</span>
+  </footer>
+
+</div>
+
+<script>
+  // Update GitHub star counts in-place. Silent fallback to static count.
+  (function () {
+    const els = document.querySelectorAll('[data-stars-repo]');
+    els.forEach(async (el) => {
+      const repo = el.getAttribute('data-stars-repo');
+      const countEl = el.querySelector('.star-count');
+      if (!repo || !countEl) return;
+      try {
+        const res = await fetch(`https://api.github.com/repos/${repo}`, {
+          headers: { 'Accept': 'application/vnd.github+json' }
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (typeof data.stargazers_count === 'number') {
+          countEl.textContent = data.stargazers_count;
+        }
+      } catch (_) { /* keep fallback */ }
+    });
+  })();
+</script>
+
+</body>
+</html>
